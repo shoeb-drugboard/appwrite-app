@@ -1,5 +1,5 @@
 import { databases } from "./config";
-import { ID, Permission, Query, Models } from "appwrite";
+import { ID, Permission, Query, Models } from "node-appwrite";
 
 type DocumentResponse = Models.Document;
 type DocumentListResponse = Models.DocumentList<Models.Document>;
@@ -40,6 +40,11 @@ const collections: readonly CollectionConfig[] = [
     id: process.env.NEXT_PUBLIC_APPWRITE_COLLECTION_USERS_ID as string,
     name: "users",
   },
+  {
+    dbId: process.env.NEXT_PUBLIC_APPWRITE_DB_ID as string,
+    id: process.env.NEXT_PUBLIC_APPWRITE_COLLECTION_PRODUCTS_ID as string,
+    name: "products",
+  }
 ] as const;
 
 collections.forEach((col) => {
@@ -76,7 +81,7 @@ collections.forEach((col) => {
           col.dbId,
           col.id,
           id
-        )) as DocumentResponse;
+        )) as unknown as DocumentResponse;
       } catch (error) {
         console.error(`Error deleting document ${id} from ${col.name}:`, error);
         throw error;
