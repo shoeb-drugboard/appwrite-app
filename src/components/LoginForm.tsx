@@ -31,7 +31,6 @@ const LoginForm = () => {
         e.preventDefault();
         setIsLoading(true);
         setError('');
-
         try {
             await account.createEmailPasswordSession(formData.email, formData.password);
             const user = await account.get();
