@@ -12,12 +12,8 @@ export default async ({ req, res, log, error }) => {
         client.setEndpoint(process.env.APPWRITE_ENDPOINT).setProject(process.env.APPWRITE_PROJECT_ID);
         client.setKey(process.env.APPWRITE_API_KEY);
         const db = new Databases(client);
-        // if (req.method === "POST") {
-        //     log("POST request")
-        // } else {
-        //     log("Not a POST request")
-        // }
         try {
+            log(name, email, LoggedIn)
             await db.createDocument(
                 process.env.APPWRITE_DB_ID,
                 process.env.APPWRITE_USR_COLLECTION_ID,
@@ -31,7 +27,7 @@ export default async ({ req, res, log, error }) => {
 
                 }
             )
-            log("Profile created successfully", userId)
+            log("Profile created successfully")
         } catch (err) {
             error("Error creating profile", err)
             return res.json({
