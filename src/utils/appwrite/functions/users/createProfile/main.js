@@ -43,15 +43,14 @@ import { Client, Account, Databases, Functions, ID } from 'node-appwrite';
 export default async ({ req, res, log, error }) => {
     try {
         // Parse the event payload
-        log("Request Load", req.payload);
         log("Request Body", req.body);
-        const eventData = JSON.parse(req.payload);
+        const eventData = JSON.parse(req.body);
         log("Event received:", eventData);
 
         // Extract user data from event
-        const userId = eventData.userId;
-        const userName = eventData.userName || 'New User';
-        const userEmail = eventData.userEmail;
+        const userId = eventData.$id;
+        const userName = eventData.name || 'New User';
+        const userEmail = eventData.email;
 
         if (!userId || !userEmail) {
             throw new Error("Missing required user data in event");
