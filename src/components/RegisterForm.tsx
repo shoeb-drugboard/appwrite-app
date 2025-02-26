@@ -45,8 +45,8 @@ const RegisterForm = () => {
             await functions.createExecution(
                 process.env.NEXT_PUBLIC_APPWRITE_CREATE_USER_FUNCTION_ID || '',
                 JSON.stringify({
-                    email: formData.email,
                     name: formData.username,
+                    email: formData.email,
                     LoggedIn: false
                 }),
                 true,
