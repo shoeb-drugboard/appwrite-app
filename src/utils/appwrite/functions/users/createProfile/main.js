@@ -1,48 +1,8 @@
 import { Client, Account, Databases, Functions, ID } from 'node-appwrite';
 
-// export default async ({ req, res, log, error }) => {
-//     if (req.body) {
-//         const userData = JSON.parse(req.body)
-//         log("Request Body", userData)
-//         const client = new Client();
-//         client.setEndpoint(process.env.APPWRITE_ENDPOINT).setProject(process.env.APPWRITE_PROJECT_ID);
-//         client.setKey(process.env.APPWRITE_API_KEY);
-//         const db = new Databases(client);
-//         try {
-//             await db.createDocument(
-//                 process.env.APPWRITE_DB_ID,
-//                 process.env.APPWRITE_USR_COLLECTION_ID,
-//                 ID.unique(),
-//                 {
-//                     name: userData["name"],
-//                     email: userData["email"],
-//                     LoggedIn: userData["LoggedIn"],
-//                 }
-//             )
-//             log("Profile created successfully")
-//         } catch (err) {
-//             error("Error creating profile", err)
-//             return res.json({
-//                 message: "error",
-//                 info: err,
-//             })
-//         }
-//         return res.json({
-//             message: "success",
-//             // info: { userId, userName, userEmail },
-//         })
-//     } else {
-//         return res.json({
-//             message: "error",
-//             info: "No data found in request body",
-//         })
-//     }
-
-
-// }
 export default async ({ req, res, log, error }) => {
     try {
-        // Parse the event payload
+        // Parse the event data if you create a execution,i.e, createa http trigger, else you can directly access the data from the event
         const eventData = req.body;
         log("Event received:", eventData);
 
