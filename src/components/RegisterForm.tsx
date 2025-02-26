@@ -50,7 +50,6 @@ const RegisterForm = () => {
                     LoggedIn: false
                 }),
                 true,
-                "",
                 ExecutionMethod.POST
             )
             // await account.updatePrefs({
