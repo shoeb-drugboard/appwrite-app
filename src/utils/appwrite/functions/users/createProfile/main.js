@@ -5,7 +5,7 @@ export default async ({ req, res, log, error }) => {
     // const data = JSON.parse(req.body)
     // log(data, "Request Body")
     if (req.body) {
-        const userData = req.body
+        const userData = JSON.parse(req.body)
         log("Request Body", userData)
         log("Request Name", userData["name"])
         // log(userId, userName, userEmail);
