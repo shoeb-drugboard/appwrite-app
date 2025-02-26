@@ -7,9 +7,9 @@ import { Select, SelectItem } from '@heroui/select';
 import { InfoIcon } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from 'next/navigation';
-import { account, functions, ID } from "@/utils/appwrite/config";
+import { account, ID } from "@/utils/appwrite/config";
 import { AppwriteException } from 'appwrite';
-import { ExecutionMethod } from 'node-appwrite';
+// import { ExecutionMethod } from 'node-appwrite';
 
 const RegisterForm = () => {
     const router = useRouter();
@@ -42,16 +42,16 @@ const RegisterForm = () => {
                 formData.password,
                 formData.username
             );
-            await functions.createExecution(
-                process.env.NEXT_PUBLIC_APPWRITE_CREATE_USER_FUNCTION_ID || '',
-                JSON.stringify({
-                    name: formData.username,
-                    email: formData.email,
-                    LoggedIn: false
-                }),
-                true,
-                ExecutionMethod.POST
-            )
+            // await functions.createExecution(
+            //     process.env.NEXT_PUBLIC_APPWRITE_CREATE_USER_FUNCTION_ID || '',
+            //     JSON.stringify({
+            //         name: formData.username,
+            //         email: formData.email,
+            //         LoggedIn: false
+            //     }),
+            //     true,
+            //     ExecutionMethod.POST
+            // )
             // await account.updatePrefs({
             //     role: formData.role
             // });
