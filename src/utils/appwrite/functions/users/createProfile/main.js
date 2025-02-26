@@ -5,6 +5,7 @@ export default async ({ req, res, log, error }) => {
     // const data = JSON.parse(req.body)
     // log(data, "Request Body")
     if (req.body) {
+        log("Request Body", req.body)
         const { email, name, LoggedIn } = req.body;
         // log(userId, userName, userEmail);
         const client = new Client();
