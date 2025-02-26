@@ -5,23 +5,24 @@ export default async ({ req, res, log, error }) => {
     // const data = JSON.parse(req.body)
     // log(data, "Request Body")
     if (req.body) {
-        log("Request Body", req.body)
-        const { email, name, LoggedIn } = req.body;
+        const userData = req.body
+        log("Request Body", userData)
+        log("Request Name", userData.name)
         // log(userId, userName, userEmail);
         const client = new Client();
         client.setEndpoint(process.env.APPWRITE_ENDPOINT).setProject(process.env.APPWRITE_PROJECT_ID);
         client.setKey(process.env.APPWRITE_API_KEY);
         const db = new Databases(client);
         try {
-            log(name, email, LoggedIn)
+            log(userData.name, userData.email, userData.LoggedIn)
             await db.createDocument(
                 process.env.APPWRITE_DB_ID,
                 process.env.APPWRITE_USR_COLLECTION_ID,
                 ID.unique(),
                 {
-                    name: name,
-                    email: email,
-                    LoggedIn: LoggedIn,
+                    name: userData.name,
+                    email: userData.email,
+                    LoggedIn: userData.LoggedIn,
                     createdAt: Date.now(),
                     updatedAt: Date.now()
 
