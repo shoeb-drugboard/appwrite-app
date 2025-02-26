@@ -142,8 +142,8 @@ const RegisterForm = () => {
                     onChange={handleChange}
                     disabled={isLoading}
                 >
-                    <SelectItem key="ADMIN" value="admin">Admin</SelectItem>
-                    <SelectItem key="mvp" value="mvp">User</SelectItem>
+                    <SelectItem key="admin">Admin</SelectItem>
+                    <SelectItem key="mvp">User</SelectItem>
                 </Select>
                 <Button
                     type="submit"
