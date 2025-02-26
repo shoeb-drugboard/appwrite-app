@@ -1,8 +1,8 @@
 import { Client, Account, Databases, Functions } from 'node-appwrite';
 
 export default async ({ req, res, log, error }) => {
+    log(req.body)
     const data = JSON.parse(req.body)
-    log(JSON.stringify(req.body), "Request Payload")
     log(data, "Request Body")
     // log(userId, userName, userEmail);
     const client = new Client();
