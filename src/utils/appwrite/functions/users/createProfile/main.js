@@ -43,6 +43,8 @@ import { Client, Account, Databases, Functions, ID } from 'node-appwrite';
 export default async ({ req, res, log, error }) => {
     try {
         // Parse the event payload
+        log("Request Load", req.payload);
+        log("Request Body", req.body);
         const eventData = JSON.parse(req.payload);
         log("Event received:", eventData);
 
