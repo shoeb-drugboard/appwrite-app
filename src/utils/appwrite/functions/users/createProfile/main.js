@@ -23,9 +23,6 @@ export default async ({ req, res, log, error }) => {
                     name: userData["name"],
                     email: userData["email"],
                     LoggedIn: userData["LoggedIn"],
-                    createdAt: Date.now(),
-                    updatedAt: Date.now()
-
                 }
             )
             log("Profile created successfully")
