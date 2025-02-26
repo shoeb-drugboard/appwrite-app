@@ -1,7 +1,7 @@
 import { Client, Account, Databases, Functions } from 'node-appwrite';
 
 export default async ({ req, res, log, error }) => {
-    const { userId, userName, userEmail } = JSON.parse(req.payload);
+    const { userId, userName, userEmail } = JSON.parse(req.body);
     log(userId, userName, userEmail);
     const client = new Client();
     client.setEndpoint(process.env.APPWRITE_ENDPOINT).setProject(process.env.APPWRITE_PROJECT_ID);
