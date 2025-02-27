@@ -10,21 +10,30 @@ export default async ({ req, res, log }) => {
     if (req.body) {
         log("Event received:", req.body);
         const userData = req.body;
-        const profileMatch = await db.listDocuments(process.env.APPWRITE_DB_ID, process.env.APPWRITE_USR_COLLECTION_ID, [
-            Query.equal("email", userData.email)
-        ]);
-        if (profileMatch.documents.length === 0) {
-            return res.status(404).send({ message: "User not found." });
+
+        // Validate email and providerUid exist in the request
+        if (!userData.providerUid) {
+            return res.status(400).send({ message: "Email is required." });
         }
-        const profileId = profileMatch.documents[0].$id;
+
         try {
+            const profileMatch = await db.listDocuments(process.env.APPWRITE_DB_ID, process.env.APPWRITE_USR_COLLECTION_ID, [
+                Query.equal("email", userData.providerUid)
+            ]);
+
+            if (profileMatch.documents.length === 0) {
+                return res.status(404).send({ message: "User not found." });
+            }
+
+            const profileId = profileMatch.documents[0].$id;
             await db.updateDocument(process.env.APPWRITE_DB_ID, process.env.APPWRITE_USR_COLLECTION_ID, profileId, {
                 LoggedIn: true
             });
+
             res.status(200).send({ message: "User session updated successfully." });
         } catch (error) {
-            log("Error updating user session:", error);
-            res.status(500).send({ message: "Could not update user session." });
+            log("Error processing request:", error);
+            res.status(500).send({ message: "An error occurred while processing the request." });
         }
     } else {
         res.status(400).send({ message: "Invalid request." });
