@@ -23,7 +23,7 @@ export default async ({ req, res, log }) => {
             });
             res.status(200).send({ message: "User session updated successfully." });
         } catch (error) {
-            log.error("Error updating user session:", error);
+            log("Error updating user session:", error);
             res.status(500).send({ message: "Could not update user session." });
         }
     } else {
