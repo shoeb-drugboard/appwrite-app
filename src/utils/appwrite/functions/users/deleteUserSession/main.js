@@ -30,12 +30,12 @@ export default async ({ req, res, log }) => {
                 LoggedIn: false
             });
 
-            res.status(200).send({ message: "User logged out successfully." });
+            return res.status(200).send({ message: "User logged out successfully." });
         } catch (error) {
             log("Error processing request:", error);
-            res.status(500).send({ message: "An error occurred while logging out the user." });
+            return res.status(500).send({ message: "An error occurred while logging out the user." });
         }
     } else {
-        res.status(400).send({ message: "Invalid request." });
+        return res.status(400).send({ message: "Invalid request." });
     }
 }
