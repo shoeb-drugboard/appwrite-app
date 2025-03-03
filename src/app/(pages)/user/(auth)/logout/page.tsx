@@ -1,9 +1,11 @@
 "use client";
 import React from "react";
-import Logout from "@/components/Logout";
+import { Button } from "@heroui/button";
+import { useAuth } from "@/context/AuthContext";
 import { Card, CardBody, CardHeader } from '@heroui/card';
 
 const Page = () => {
+    const { logout, isLoading } = useAuth();
     return (
         <div className='h-screen w-screen dark bg-background text-foreground grid place-content-center'>
             <Card className="">
@@ -12,7 +14,12 @@ const Page = () => {
                 </CardHeader>
                 <CardBody className="flex flex-col items-center">
                     <p className="mb-4">Are you sure you want to logout?</p>
-                    <Logout />
+
+                    {isLoading ? (
+                        <p>Logging out...</p>
+                    ) : (
+                        <Button onPress={() => logout()} className="btn" variant="ghost" color="secondary">Confirm Logout</Button>
+                    )}
                 </CardBody>
             </Card>
         </div>
