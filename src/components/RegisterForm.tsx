@@ -1,14 +1,15 @@
-import React, { useState } from 'react'
+import Link from "next/link";
 import { Form } from "@heroui/form";
-import { Tooltip } from '@heroui/tooltip';
 import { Input } from '@heroui/input';
 import { Button } from '@heroui/button';
-import { Select, SelectItem } from '@heroui/select';
+import React, { useState } from 'react';
 import { InfoIcon } from "lucide-react";
-import Link from "next/link";
+import { Tooltip } from '@heroui/tooltip';
 import { useRouter } from 'next/navigation';
-import { account, ID } from "@/utils/appwrite/config";
 import { AppwriteException } from 'appwrite';
+import { Select, SelectItem } from '@heroui/select';
+import { account, ID } from "@/utils/appwrite/config";
+import { withPublicAuth } from "./withAuth";
 // import { ExecutionMethod } from 'node-appwrite';
 
 const RegisterForm = () => {
@@ -91,7 +92,7 @@ const RegisterForm = () => {
                     {error}
                 </span>
             )}
-            <Form className="w-full max-w-lg gap-4 space-y-4" onSubmit={handleRegister}>
+            <Form className="min-w-4xl max-w-4xl gap-4 space-y-4" onSubmit={handleRegister}>
                 <Input
                     isRequired
                     label="Username"
@@ -173,4 +174,4 @@ const RegisterForm = () => {
     )
 }
 
-export default RegisterForm
+export default withPublicAuth(RegisterForm)
